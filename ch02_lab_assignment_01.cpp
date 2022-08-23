@@ -22,6 +22,8 @@ int main()
     cout << "To have a " << desired_profit * 100 
          << "% profit, the flash drive should sell for $" 
          << price << ".";
+
+    return 0;
 }
 
     
