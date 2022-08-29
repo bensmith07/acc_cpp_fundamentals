@@ -1,3 +1,7 @@
 *.docx
 *.pdf
 tempCodeRunnerFile.cpp
+.DS_Store
+.vscode/
+*.dSYM/
+*.pages
