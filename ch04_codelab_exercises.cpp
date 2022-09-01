@@ -73,5 +73,36 @@ if (modelYear < 2001 or modelYear > 2006)
 // if and only if c is a newline character. 
 c == '\n'
 
-// write a swith statement that prints out the appropriate label 
+// write a switch statement that prints out the appropriate label 
 // from the given list based on status
+switch (status)
+{
+	case 200:
+		cout << "OK (fulfilled)";
+		break;
+	case 403:
+		cout << "forbidden";
+		break;
+	case 404:
+		cout << "not found";
+		break;
+	case 500:
+		cout << "server error";
+}
+
+// Write a switch statement that tests the value of the char
+// variable response and performs actions from the given list
+switch (response)
+{
+	case 'y':
+		cout << "Your request is being processed";
+		break;
+	case 'n':
+		cout << "Thank you anyway for your consideration";
+		break;
+	case 'h':
+		cout << "Sorry, no help is currently available";
+		break;
+	default:
+		cout << "Invalid entry; please try again";
+}
