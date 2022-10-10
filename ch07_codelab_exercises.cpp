@@ -65,3 +65,33 @@ class Accumulator
     close();
     freeResources();
 }
+
+// Define a new type called POINT that is a structure consisting of 
+// two fields, x and y, both of type double
+
+struct POINT
+{
+    double x;
+    double y;
+};
+
+// Given a structure type Money, declare the following variables of that type:
+// revenue, expenses, profit
+
+Money revenue, 
+      expenses, 
+      profit;
+
+// Assume you have a variable price1 of type Money where the latter is a 
+// structured type with two int fields, dollars and cents. assign values to 
+// the fields so it represents $29.95
+
+price1.dollars = 29;
+price1.cents = 95;
+
+// Assume that two variables p1 and p2 of type POINT have been declared 
+// (see definition of POINT above) and that p1 has already been initialized.
+// Write a statement that gives p2 the same value that p1 has.
+
+p2.x = p1.x;
+p2.y = p1.y;
