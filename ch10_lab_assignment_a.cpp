@@ -37,6 +37,8 @@ int main()
 	cout << endl;
 	cout << "is " << get_median(arr2, size_arr2) << endl;
 
+	return 0;
+
 }
 
 // this function takes in an integer array and its size
