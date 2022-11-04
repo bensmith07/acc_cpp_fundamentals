@@ -43,18 +43,22 @@ watched and returns it to the main function.
 
 */
 
+
+// TODO: input validation doesn't catch negative numbers
+
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <algorithm> 
 using namespace std;
 
-int main()
-{
+void get_data(int students[], int n);
 
-    int n;                  // number of data points
-    int students[n];        // array of data points
-    bool valid = false;     // for input validation
+int main()
+{   
+    unsigned int n;                      // number of data points
+    int* students = nullptr;    // pointer to data array
+    bool valid = false;         // for input validation
 
     // get the number of data points and validate input
     do
@@ -75,8 +79,45 @@ int main()
         }
     } while (!valid);
 
+    students = new int[n];
+    get_data(students, n);
+    
+    
+    delete [] students;
     return 0;
+
 }
+
+void get_data(int students[], int n)
+{   
+    unsigned int input;
+    bool valid = false;
+
+    for (int i = 0; i < n; i++)
+    {   
+        do
+        {
+            cout << "Enter data for student #" << i << ": " << endl;
+            cin >> input;
+            // input is good - exit the loop
+            if (cin.good())
+            {
+                *(students + i) = input;
+                valid = true;
+            }
+            // input is invalid, clear the input stream and try again
+            else
+            {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                cout << "You must enter a positive whole number. Try again." << endl;
+            }
+        } while (!valid);
+    }
+}
+
+
+
 
 
 
