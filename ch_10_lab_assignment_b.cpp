@@ -54,9 +54,10 @@ using namespace std;
 
 void get_data(int students[], int n);
 
+
 int main()
 {   
-    unsigned int n;                      // number of data points
+    unsigned int n;             // number of data points
     int* students = nullptr;    // pointer to data array
     bool valid = false;         // for input validation
 
@@ -81,6 +82,7 @@ int main()
 
     students = new int[n];
     get_data(students, n);
+    print_array(students, n);
     
     
     delete [] students;
