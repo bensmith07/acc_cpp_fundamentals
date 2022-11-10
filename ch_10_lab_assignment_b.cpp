@@ -1,50 +1,9 @@
-/* 
-
-Write a program that will be used to gather 
-statistical data about the number of movies 
-college students see in a month.  
-The program should ask the user how many students
-were surveyed and dynamically allocate an array 
-of that size.  The program then should allow 
-the user to enter the number of movies each 
-student has seen.  It should then sort the 
-scores and calculate the average.
-
-Modularity:
-
-Main:  The main function should accept the number 
-of students from the user and dynamically create 
-an array large enough to contain number of movies 
-watched for each student. 
-Input validation:  The number of students should 
-be a positive integer.   
-Print the average and free the allocated array 
-when complete.
-
-Get the data.  This function should get the number 
-of movies watched by each college student.
-Input validation:  The number of movies should be 
-a positive integer.
-
-Sort the data.  This function should sort the 
-array in ascending order. Note you may use the 
-Standard Template Library sort function or your 
-own sort function.  
-To use the STL sort:
-Add #include <algorithm> to your program
-sort (arrayname, arrayname + size of array) (beginning and ending elements)
-
-Display: This function should display the sorted 
-list of the number of movies watched.
-
-Average: This function should be a value-returning
-function that calculates the average of the movies 
-watched and returns it to the main function.
-
-*/
-
-
-// TODO: input validation doesn't catch negative numbers
+// NAME: Ben Smith
+// PROGRAM STATUS: Complete
+// This program prompts a user to input a number of data points
+// representing student test scores, stores those data points in
+// a dynamically allocated array, calculates the average, then displays
+// the list of data along with the average. 
 
 #include <iostream>
 #include <iomanip>
@@ -52,22 +11,24 @@ watched and returns it to the main function.
 #include <algorithm> 
 using namespace std;
 
-void get_data(int students[], int n);
-
+void get_data(int arr[], int n);
+double average(int arr[], int n);
+void display(int arr[], int n);
 
 int main()
 {   
-    unsigned int n;             // number of data points
-    int* students = nullptr;    // pointer to data array
-    bool valid = false;         // for input validation
+    int n;                 // number of data points
+    int* arr = nullptr;    // pointer to data array
+    bool valid = false;    // for input validation
+    double avg;            // average
 
-    // get the number of data points and validate input
+    // get the number of data points (n) and validate input
     do
     {
         cout << "Enter the number of data points: ";
         cin >> n;
         // input is good - exit the loop
-        if (cin.good())
+        if (cin.good() and n > 0)
         {
             valid = true;
         }
@@ -79,35 +40,47 @@ int main()
             cout << "You must enter a positive whole number. Try again." << endl;
         }
     } while (!valid);
-
-    students = new int[n];
-    get_data(students, n);
-    print_array(students, n);
-    
-    
-    delete [] students;
+    // dynamically allocate an array of size n
+    arr = new int[n];
+    // prompt the user to input data
+    get_data(arr, n);
+    // sort the data
+    sort(arr, arr+n);
+    // calculate the average value
+    avg = average(arr, n);
+    // display the data and the average
+    cout << "Number of Movies Watched:" << endl;
+    cout << "-------------------------" << endl;
+    display(arr, n);
+    cout << "-------------------------" << endl;
+    cout << "Average: " << avg;
+    // delete the dynamically allocated memory
+    delete [] arr;
     return 0;
-
 }
 
-void get_data(int students[], int n)
+// This function prompts the user to enter a given number
+// of student test scores and validates input for only positive integers
+void get_data(int arr[], int n)
 {   
-    unsigned int input;
-    bool valid = false;
-
+    int input;              // the user input value
+    bool valid = false;     // flag for input validation
+    
+    // repeat the loop once for each element in the array
     for (int i = 0; i < n; i++)
     {   
         do
-        {
-            cout << "Enter data for student #" << i << ": " << endl;
+        {   
+            // get user input
+            cout << "Enter data for student #" << i + 11 << ": " << endl;
             cin >> input;
             // input is good - exit the loop
             if (cin.good())
             {
-                *(students + i) = input;
+                *(arr + i) = input;
                 valid = true;
             }
-            // input is invalid, clear the input stream and try again
+            // input is invalid, clear the input stream and prompt the user again
             else
             {
                 cin.clear();
@@ -118,8 +91,33 @@ void get_data(int students[], int n)
     }
 }
 
+// this function calculates the average value in an 
+// array of integers of size n
+double average(int arr[], int n)
+{
+    double total = 0;   // for keeping a running total
 
+    // convert n to a float for division
+    n = double(n);        
+    // get the sum of all values in the array
+    for (int i = 0; i < n; i++)
+    {
+        total += *(arr + i);
+    }
+    // return the average
+    return total / n;
+}
 
+// this function displays each element in the array on a new line
+void display(int arr[], int size)
+{
+	// loop through and print each element of the array
+	for (int i = 0; i < size; i++)
+	{
+		cout << *(arr + i) << endl;
+	}
+
+}
 
 
 
