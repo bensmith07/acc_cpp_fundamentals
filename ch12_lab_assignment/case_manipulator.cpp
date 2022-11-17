@@ -1,71 +1,102 @@
+// NAME: Ben Smith
+// PROGRAM STATUS: Complete
+
+// This program accepts a string from the user, then 
+// displays that string in:
+//      1. All uppercase
+//      2. All lowercase
+//      3. With the case of each character 
+//         in the original string flipped to its
+//         opposite
+
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <cctype>
+#include <cstring>
 using namespace std;
-
-// Case Manipulator – Write a program with three functions:  upper, lower, and flip.  
-// Each function should accept a C-string as an argument.  
-
-// The upper function should 
-// step through all the characters in the string, converting each to uppercase.  
-
-// The lower function,  should step through all the characters in the string converting, 
-// each to lowercase.   
-
-// The  flip  steps through the string, testing each character to 
-// determine whether it is upper or lowercase.   If upper, it should convert to lower.  
-// If lower, it should convert to upper.
-
-// The main function should accept one string from the user, then pass it to each of the functions.
-
-// Output:   The original string, the uppercase, lowercase, and flipped case strings should all be displayed.
 
 int main()
 {
 
-    
+    const int SIZE = 280;           // maximum size of the input string
+    char input[SIZE];               // input string as an array (c-string)
+    void upper(char string1[]);     // upper function
+    void lower(char string1[]);     // lower function
+    void flip(char string1[]);      // flip function
 
+    // get user input
+    cout << "Enter a string: ";
+    cin.getline(input, SIZE);
+    // display in all uppercase
+    cout << "Upper: ";
+    upper(input);
+    cout << endl;
+    // display in all lowercase
+    cout << "Lower: ";
+    lower(input);
+    cout << endl;
+    // display with original case flipped
+    cout << "Flip: ";
+    flip(input);
+    cout << endl;
 
     return 0;
 }
 
+// This function converts a string to all uppercase
 void upper(char string1[])
 {
-    int idx = 0; // loop counter
+    int idx = 0;                            // loop counter
+    char tempstring[strlen(string1 + 1)];   // for storing the coverted characters
 
+    // step through each character
     while (string1[idx] != '\0')
-    {
-        string1[idx] = toupper(string1[idx]);
+    {   
+        // convert to upper and display
+        tempstring[idx] = toupper(string1[idx]);
+        cout << tempstring[idx];
         idx++;
     }
 }
 
+// this function converts a string to all lowercase
 void lower(char string1[])
 {
-    int idx = 0; // loop counter
-    
+    int idx = 0;                            // loop counter
+    char tempstring[strlen(string1 + 1)];   // for storing converted characters
+
+    // step through each character
     while (string1[idx] != '\0')
     {
-        string1[idx] = tolower(string1[idx]);
+        // convert to upper and display
+        tempstring[idx] = tolower(string1[idx]);
+        cout << tempstring[idx];
         idx++;
     }
 }
 
+// this function flips each character in a string to
+// its opposite case
 void flip(char string1[])
 {
-    int idx = 0;
+    int idx = 0;                            // loop counter
+    char tempstring[strlen(string1 + 1)];   // for storing converted characters
 
+    // step through each character
     while (string1[idx] != '\0')
     {
+        // check the case of the character
+        // then convert to its opposite and display
         if (isupper(string1[idx]))
-        {
-            string1[idx] = tolower(string1[idx]);
+        {   
+            tempstring[idx] = tolower(string1[idx]);
+            cout << tempstring[idx];
         }
         else
         {
-            string1[idx = toupper(string1[idx])];
-        }
+            tempstring[idx] = toupper(string1[idx]);
+            cout << tempstring[idx];        }
         idx++;
     }
 }
