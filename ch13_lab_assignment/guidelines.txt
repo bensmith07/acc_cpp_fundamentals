@@ -1,0 +1,10 @@
+Express ideas directly in code
+Write in ISO Standard C++
+Express intent
+Ideally, a program should be statically type safe
+Prefer compile-time checking to run-time checking
+What cannot be checked at compile time should be checkable at run time
+Catch run-time errors early
+Don't leak any resources
+Don't waste time or space
+Prefer immutable data to mutable dataka
